@@ -1,0 +1,7 @@
+{
+  "name": "jobConnect",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
