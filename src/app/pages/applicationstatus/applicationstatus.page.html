@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar  color="primary" >
+    <ion-title> My Applications </ion-title>
+    <ion-buttons (click)="goToEmployers()" slot="primary">
+        <ion-button  >
+          <ion-icon slot="icon-only" name="chevron-forward-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="empty"  *ngIf="applicationstatus?.length === 0 ">
+    <ion-icon name="notifications"></ion-icon>     
+    <h5>No orders made!</h5>
+    <small>
+      You haven't applied to any jobs
+    </small>
+  </div>
+
+  <br>
+  <ion-list lines="none">
+    <div padding>
+      My Job Applications <span style="color:#1f8611;"></span>
+    </div> <br> 
+
+    <ion-item *ngFor="let application of applicationstatus" >
+      <ion-thumbnail slot="start">
+        <img [src]="application.Job.imageUrl"/>
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{application.job.name}}</h2>
+       <!-- <p>Price : {{order.product.price}}</p>
+        <p>Payment on delivery</p> -->
+      </ion-label>
+      <ion-button fill="outline" slot="end" (click)="presentActionSheet(application)" *ngIf="application.status === 'new' ">Confirm application</ion-button>
+      <ion-button fill="outline" color="success" disabled slot="end" *ngIf="application.status === 'confirmed'" >Processing application</ion-button>
+      <ion-button fill="outline" color="danger" disabled slot="end" *ngIf="application.status === 'canceled'" >Cancelled</ion-button>
+    </ion-item>
+     
+    <ion-segment (click)="goToEmployers()" >
+      <ion-segment-button value="friends">
+        <ion-label>View available employers</ion-label> 
+      </ion-segment-button>
+     
+    </ion-segment>
+
+  </ion-list>
+      
+</ion-content>

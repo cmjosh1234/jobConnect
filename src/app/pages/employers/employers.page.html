@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar  color="primary" >
+    <ion-title>AVAILABLE EMPLOYERS</ion-title>
+    <ion-buttons slot="primary">
+        <ion-button (click)="goToApplicationStatus()" >
+          <ion-icon slot="icon-only" name="calendar"></ion-icon>
+        </ion-button>
+      </ion-buttons>  
+  </ion-toolbar>
+</ion-header>
+<ion-searchbar showCancelButton="never" type="text" placeholder="Search for job..."></ion-searchbar>
+
+<!-- scrollable content -->
+<ion-content>
+
+  <ion-card >
+     <img class="image" src="assets/icon/employer.jpg"/>
+     <ion-card-header>
+      <ion-card-title>Your job</ion-card-title>
+      <p>Your employer</p>
+    </ion-card-header>
+    <ion-card-content>
+      We are looking for eligible applicants.
+    </ion-card-content>
+    <ion-button  >
+     Apply 
+    </ion-button>
+  </ion-card>
+  <ion-card >
+    <img class="image" src="assets/icon/employer.jpg"/>
+    <ion-card-header>
+     <ion-card-title>Your job</ion-card-title>
+     <h2>your employer</h2>
+   </ion-card-header>
+   <ion-card-content>
+     We are looking for eligible applicants.
+   </ion-card-content>
+   <ion-button  >
+    Apply 
+   </ion-button>
+ </ion-card>
+ <ion-card >
+  <img class="image" src="assets/icon/employer.jpg"/>
+  <ion-card-header>
+   <ion-card-title>Your job</ion-card-title>
+   <h2>your employer</h2>
+ </ion-card-header>
+ <ion-card-content>
+   We are looking for eligible applicants.
+ </ion-card-content>
+ <ion-button  >
+  Apply 
+ </ion-button>
+</ion-card>
+
+
+</ion-content>

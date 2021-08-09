@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar  color="primary" >
+    <ion-title>  Welcome to {{employer.name}}</ion-title>
+    <ion-buttons slot="primary">
+        <ion-button (click)="backToEmployers()" >
+          <ion-icon  slot="icon-only" name="arrow-undo-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-searchbar></ion-searchbar>
+<!-- code that will render a list of products -->
+<ion-content>
+  <br>
+  <ion-list lines="none">
+    <div padding>
+      Jobs at <span style="color:#1f8611;">{{employer.name}}</span>
+    </div> <br> 
+
+    <ion-item *ngFor="let job of jobs" (click)="presentModal(job)"  >
+      <ion-thumbnail slot="start">
+        <img [src]="job.imageUrl"/>
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{job.name}}</h2>
+        <!--<p>Price : {{product.price}}</p>
+        <p>{{product.duration}}</p> -->
+      </ion-label>
+      <ion-button slot="end"> Order Product</ion-button>
+    </ion-item> 
+
+  </ion-list>  
+</ion-content>

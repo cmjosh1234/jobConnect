@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Add your company Name</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding >
+  <div>
+ <!--   <p>Hi Banny, Please lets us know about your Business</p> -->
+  </div>
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)" >
+    <ion-list>
+      
+        <ion-item>
+          <ion-label position="floating">Company Name</ion-label>
+          <ion-input type="text" ngModel  name="name"  placeholder="Company Name"></ion-input>
+        </ion-item>
+        <br/>
+
+        <ion-item>
+          <ion-label position="floating"> Company Description</ion-label>
+          <ion-textarea  ngModel name="description" required ></ion-textarea>
+        </ion-item>
+        <br/>
+
+        <ion-item>
+          <ion-label position="floating">Phone Number</ion-label>
+          <ion-input type="tel" ngModel  name="phone"  placeholder="+256"></ion-input>
+        </ion-item>
+        <br/>
+
+        <ion-item>
+            <ion-label position="floating">Email Address</ion-label>
+            <ion-input type="email" ng Model name="email"  placeholder="example@gmail.com"></ion-input>
+        </ion-item>
+        <br/>
+  
+        <ion-item>
+            <ion-label position="floating">Working hours</ion-label>
+            <ion-input type="text" ngModel  name="hours" required   placeholder="8am - 10pm monday to friday"></ion-input>
+        </ion-item>
+        <br/>
+
+        <ion-item>
+          <ion-label position="floating"> Address</ion-label>
+          <ion-textarea name="address" ngModel required ></ion-textarea>
+        </ion-item>
+        <br/>
+     
+    </ion-list>
+    <ion-button  type="submit"  shape="round" style="color:white" expand="block">{{btnText}}</ion-button>
+  </form>
+</ion-content>
