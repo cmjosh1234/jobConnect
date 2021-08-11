@@ -41,7 +41,7 @@ export class LoginPage implements OnInit {
             this.userProfile = result.data();
             localStorage.setItem('activeUser', JSON.stringify(this.userProfile));
             if (this.userProfile.type === 'jobSeeker') {
-              this.router.navigate(['/employers'])
+              this.router.navigate(['/jobs'])
             } else {
               this.service._get('employers', {key: 'owner', value: uid}).subscribe( employerData => {
                   const employers = employerData.docs.map(doc => doc.data());

@@ -3,6 +3,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { ToastController } from '@ionic/angular';
 import { ApiService } from '../../services/api.service';
 import { DataService } from '../../services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-positions',
@@ -20,6 +21,7 @@ export class PositionsPage implements OnInit {
   processing = false;
   img: any;
   constructor(
+    public router:Router,
     public data:DataService,
     public api:ApiService,
     public afStorage:AngularFireStorage,
@@ -30,7 +32,7 @@ export class PositionsPage implements OnInit {
 
   ngOnInit() {
     this.employer = this.data.getMyEmployer(); 
-    this.img = 'assets/icon/defaultemp.jpg'; //to give employer default profile picture
+    this.img = 'assets/icon/employer1.jpg'; //to give employer default profile picture
     
   }
 //to carter for switching tabs a lot
@@ -101,5 +103,8 @@ export class PositionsPage implements OnInit {
     toast.present();
   }
 
+  goToJob(){
+    this.router.navigate(['/job'])
+  }
 
 }

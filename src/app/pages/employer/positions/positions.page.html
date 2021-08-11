@@ -21,7 +21,7 @@
   <div *ngIf="openForm" class="form">
     <ion-item-divider>
       <ion-label>
-        Vacant positions
+        Add Vacant positions
       </ion-label>
     </ion-item-divider>
 
@@ -41,6 +41,16 @@
         <ion-input type="text" ngModel name="postDate" required #serviceCtrl="ngModel" placeholder=" "></ion-input>
       </ion-item>
 
+      <ion-item>
+        <ion-label>field</ion-label>
+        <ion-select ngModel  name="type" required>
+          <ion-select-option  value="administration">ADMINISTRATION</ion-select-option>
+          <ion-select-option  value="it">IT PROFESSIONAL</ion-select-option>
+          <ion-select-option  value="hospitality">HOSPITALITY</ion-select-option>
+          <ion-select-option  value="advertisement">ADVERTISEMENT</ion-select-option>
+        </ion-select>
+      </ion-item> <br/>
+
       <ion-row>
         <ion-col size="2">
           <img [src]="img" alt="" style="width:50px; height:45px; object-fit: cover;">
@@ -58,13 +68,8 @@
       </ion-row>
 
     <ion-item>
-      <ion-label position="stacked">Description</ion-label>
-      <ion-textarea
-        ngModel
-        name="description"
-        required
-        #descriptionCtrl="ngModel"
-        placeholder="Description"
+      <ion-label position="stacked">Relevant qualifications</ion-label>
+      <ion-textarea ngModel name="qualifications" required #descriptionCtrl="ngModel" placeholder="Relevant Academic qualifications"
       ></ion-textarea>
     </ion-item>
     <br>
@@ -75,29 +80,28 @@
 </div>
 <ion-list lines="none">
   <div padding>
-    Available products for <span style="color:#1f8611;">{{shop.name}}</span>
+    Available products for <span style="color:#1f8611;">{{employer.name}}</span>
   </div> <br> 
   
-  <div class="empty"  *ngIf="products?.length === 0 ">
+  <div class="empty"  *ngIf="jobs?.length === 0 ">
     <ion-icon name="logo-buffer"></ion-icon>     
-    <h5>No Products!</h5>
+    <h5>No Vacant Positions!</h5>
     <small>
-      Add all the different products your shop can offer [ add image, price,
-      product name and the description ].
+      Add all Vacant Positions here
     </small>
-    <ion-button  fill="clear" display="block" (click)="addBtnClicked()">Add Product</ion-button>
+    <ion-button  fill="clear" display="block" (click)="addBtnClicked()">Add Vacant Position</ion-button>
   </div>
 
-  <ion-item *ngFor="let product of products"  >
+  <ion-item *ngFor="let job of jobs"  >
     <ion-thumbnail slot="start">
-      <img [src]="product.imageUrl"  onError="this.src='assets/icon/shop.jpg';" >
+      <img [src]="job.imageUrl"  onError="this.src='assets/icon/employer.jpg';" >
     </ion-thumbnail>
     <ion-label>
-      <h2>{{product.name }}</h2>
-      <p>Price : Ugx.{{product.price }}</p>
-      <p>{{product.duration}}</p>
+      <h2>{{job.name }}</h2>
+      <p>{{job.jobDescription}}</p>
+
     </ion-label>
-    <ion-button slot="end"> Edit</ion-button>
+    <ion-button slot="end" (click)="goToJob()"> view </ion-button>
   </ion-item> 
 </ion-list>  
   

@@ -13,10 +13,10 @@
 
   <ion-list lines="none">
     <div padding>
-       <span style="color:#1f8611; margin:10px"> Orders Made to your Shop</span>
+       <span style="color:#1f8611; margin:10px">Received Applications</span>
     </div> <br> 
 
-    <div class="empty"  *ngIf="orders?.length === 0 ">
+    <div class="empty"  *ngIf="applications?.length === 0 ">
       <ion-icon name="notifications"></ion-icon>     
       <h5>No Applications !</h5>
       <small>
@@ -24,16 +24,16 @@
       </small>
     </div>
 
-    <ion-item  *ngFor="let order of applicationss" >
+    <ion-item  *ngFor="let application of applications" >
       <ion-thumbnail slot="start">
-        <img [src]="application.job.imageUrl"/> // to be edited
+      <!--  <img [src]="application.job.imageUrl"/> // to be edited -->
       </ion-thumbnail>
       <ion-label>
         <h2>{{application.user.name}}</h2>
         <p>{{application.job.name}} | Ugx.{{application.job.position}} </p>
-        <p>Payment on delivery</p>
+ 
       </ion-label>
-      <ion-button fill="outline" slot="end" (click)="confirmOrder(application)" *ngIf="application.status==='new'">Confirm</ion-button>
+      <ion-button fill="outline" slot="end" (click)="confirmApplication(application)" *ngIf="application.status==='new'">Confirm</ion-button>
       <ion-button name="call" fill="outline" slot="end" *ngIf="application.status==='pending'" (click)="callUser(application.user.phone)">Contact</ion-button>
       <ion-button fill="outline"  color="success" disabled slot="end" *ngIf="application.status==='confirmed'" (click)="callUser(application.user.phone)"  >Application accepted</ion-button>
       <ion-button fill="outline"  color="danger"  disabled slot="end" *ngIf="application.status==='canceled'">Application denied</ion-button>

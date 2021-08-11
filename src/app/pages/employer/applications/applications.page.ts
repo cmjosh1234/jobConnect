@@ -42,7 +42,7 @@ export class ApplicationsPage implements OnInit {
     }
   }*/
 
-  confirmOrder(application) {
+  confirmApplication(application) {
     this.api._edit('appointments', application.id, {status: 'pending'}, async (result) => {
         this.fetchApplicationstatus();
     });

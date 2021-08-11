@@ -44,7 +44,7 @@ export class SignupPage implements OnInit {
           if (resultSet.flag) {
             if (user.type === 'jobSeeker') {
               
-              this.router.navigate(['/employers'])
+              this.router.navigate(['/setprofile'])
             } else {
               
               this.router.navigate(['/addemployer'])

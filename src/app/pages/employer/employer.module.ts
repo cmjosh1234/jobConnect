@@ -53,9 +53,14 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/tabs/jobs',
+    redirectTo: '/employer/jobs',
     pathMatch: 'full'
   }
+ /* {
+    path: '',
+    redirectTo: '/tabs/jobs',
+    pathMatch: 'full'
+  }*/
 ];
 
 @NgModule({
