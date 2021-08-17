@@ -16,7 +16,7 @@
        <span style="color:#1f8611; margin:10px">Received Applications</span>
     </div> <br> 
 
-    <div class="empty"  *ngIf="applications?.length === 0 ">
+    <div class="empty"  *ngIf="applicationstatus?.length === 0 ">
       <ion-icon name="notifications"></ion-icon>     
       <h5>No Applications !</h5>
       <small>
@@ -24,11 +24,26 @@
       </small>
     </div>
 
-    <ion-item  *ngFor="let application of applications" >
+  <!--  <ion-item  *ngFor="let application of applications" >
       <ion-thumbnail slot="start">
-      <!--  <img [src]="application.job.imageUrl"/> // to be edited -->
+        <img [src]="application.job.imageUrl"/> // to be edited 
       </ion-thumbnail>
       <ion-label>
+        <div class="empty" *ngIf="files?.length === 0 ">
+          <ion-icon name="images"></ion-icon>     
+          <h5>No Pictures in {{employer.name}} !</h5>
+          <small>
+            You can view pictures gallery after their shop has been stocked
+          </small>
+        </div>
+      
+        <ion-row>
+          <ion-col *ngFor="let file of files" class="imgContainer" text-center size="4" sizeMd="4" sizeXl="3">
+            <p>Open <a href="file.pdfUrl">CV here...</a>.</p>
+          </ion-col>
+        </ion-row>
+  
+  
         <h2>{{application.user.name}}</h2>
         <p>{{application.job.name}} | Ugx.{{application.job.position}} </p>
  
@@ -37,7 +52,22 @@
       <ion-button name="call" fill="outline" slot="end" *ngIf="application.status==='pending'" (click)="callUser(application.user.phone)">Contact</ion-button>
       <ion-button fill="outline"  color="success" disabled slot="end" *ngIf="application.status==='confirmed'" (click)="callUser(application.user.phone)"  >Application accepted</ion-button>
       <ion-button fill="outline"  color="danger"  disabled slot="end" *ngIf="application.status==='canceled'">Application denied</ion-button>
+    </ion-item> -->
+
+    <ion-item  *ngFor="let application of applicantstatus" >
+     <!-- <ion-thumbnail slot="start">
+        <img [src]="application.job.imageUrl"/>
+      </ion-thumbnail>-->
+      <ion-label>
+        <h2>{{application.job.name}}</h2>
+        <p>Description : {{application.job.jobDescription}}</p>
+      </ion-label>
+      <ion-button fill="outline" slot="end" (click)="confirmApplication(application)" *ngIf="application.status==='new'">Confirm</ion-button>
+      <ion-button name="call" fill="outline" slot="end" *ngIf="applicati.status==='pending'" (click)="callUser(application.user.phone)">Contact</ion-button>
+      <ion-button fill="outline"  color="success" disabled slot="end" *ngIf="application.status==='confirmed'" (click)="callUser(application.user.phone)"  >Application accepted</ion-button>
+      <ion-button fill="outline"  color="danger"  disabled slot="end" *ngIf="application.status==='canceled'">Application denied</ion-button>
     </ion-item>
+
   </ion-list>
       
 </ion-content>

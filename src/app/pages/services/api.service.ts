@@ -9,6 +9,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
   providedIn: 'root'
 })
 export class ApiService {
+  afs: any;
   constructor( public fireStore: AngularFirestore, public fireStorage: AngularFireStorage) { }
 
   //method to get collections or data from database  
@@ -66,6 +67,11 @@ export class ApiService {
     .then( result => callback({result}))
     .catch(error => callback({error}));
   }
+
+  //method to return a specific employer ID
+  _getEmployer(uid : string) {
+    return (this.afs.firestore.doc(`users/${uid}`).get())
+}
    
 
    //method to upload a file to our online bucket
@@ -82,5 +88,19 @@ export class ApiService {
         callback({ flag: false, error});
       });
   }
+
+  //method to upload a file to our online bucket
+  _uploadFile( file, folder, callback) {
+    let fileRef = this.fireStorage.storage.ref(`${folder}/${+new Date()}.pdf`);
+    fileRef.put(file).then((snapshot)  => {
+      snapshot.ref.getDownloadURL().then( url => {
+        callback({flag: true, url});
+      }).catch( error => {
+        callback({ flag: false, error});
+      });
+    }).catch( error => {
+      callback({ flag: false, error});
+    });
+}
 
 }

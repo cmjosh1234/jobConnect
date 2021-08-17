@@ -1,9 +1,51 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>setprofile</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true">
+  <div class="top" color="primary">
+    <img src="assets/icon/logo1.svg" /> 
+    <h2>Account Set Up</h2>
+    <small>Set Up your Account on job Connect</small>
+  </div> <br>
 
-<ion-content>
 
+  <div padding>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)" >
+      <ion-list>
+        <ion-label>field</ion-label>
+        <ion-select ngModel  name="type" required>
+          <ion-select-option  value="administration">ADMINISTRATION</ion-select-option>
+          <ion-select-option  value="it">IT PROFESSIONAL</ion-select-option>
+          <ion-select-option  value="hospitality">HOSPITALITY</ion-select-option>
+          <ion-select-option  value="advertisement">ADVERTISEMENT</ion-select-option>
+        </ion-select>
+
+        <ion-item>
+          <ion-label>Sex</ion-label>
+          <ion-select ngModel  name="Sex" required>
+            <ion-select-option  value="male">MALE</ion-select-option>
+            <ion-select-option  value="female">FEMALE</ion-select-option>
+            <ion-select-option  value="other">OTHER</ion-select-option>
+          </ion-select>
+        </ion-item>  
+
+        <ion-item>
+          <ion-label position="stacked">Date of Birth</ion-label>
+          <ion-input type="date" ngModel name="dob" required #dateCtrl="ngModel"></ion-input>
+      </ion-item>
+      <p class="erorr" *ngIf="!dateCtrl.valid && dateCtrl.touched">Please put the desired date.</p>
+  
+        <ion-item>
+          <ion-input type="text" ngModel  name="name" placeholder="Full name" required ></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-input type="tel" ngModel name="phone" placeholder="Phone Number" required   ></ion-input> 
+        </ion-item>
+        
+  
+      </ion-list>
+      <small class="error">{{error}}</small>
+      <ion-button  type="submit" [disabled]="btnDisabled" shape="round" style="color:white" expand="block"> {{btnText}} </ion-button>
+       
+    </form>
+    <br/>
+  </div>
 </ion-content>

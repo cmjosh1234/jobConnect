@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
   }
 
   onSubmit(form) {
-    this.btnText = 'Please wait ...';
+    this.btnText = 'Logging in...';
     this.processing = true;
     const user = form.value;
     const email = user.phone + '@jobconnectapp.com';
@@ -41,7 +41,7 @@ export class LoginPage implements OnInit {
             this.userProfile = result.data();
             localStorage.setItem('activeUser', JSON.stringify(this.userProfile));
             if (this.userProfile.type === 'jobSeeker') {
-              this.router.navigate(['/jobs'])
+              this.router.navigate(['/employers'])
             } else {
               this.service._get('employers', {key: 'owner', value: uid}).subscribe( employerData => {
                   const employers = employerData.docs.map(doc => doc.data());

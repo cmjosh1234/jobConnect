@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { DataService } from '../../services/data.service';
-//import { CallNumber } from '@ionic-native/call-number/ngx';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 
 
 @Component({
@@ -11,12 +11,12 @@ import { DataService } from '../../services/data.service';
 })
 export class ApplicationsPage implements OnInit {
   employer: any;
-  applicationstatus: any;
+  applicantstatus: any;
 
   constructor(
     public data:DataService,
     public api:ApiService,
- //   private callNumber: CallNumber
+    private callNumber: CallNumber
   ) { }
 
   ngOnInit() {
@@ -28,19 +28,19 @@ export class ApplicationsPage implements OnInit {
 //function to load applications made
   fetchApplicationstatus() {
     const where =  {key: 'employer_id', value: this.employer.id };
-    this.api._get('applicationstatus', where).subscribe( data => {
-      this.applicationstatus = data.docs.map(doc => doc.data());
+    this.api._get('applicantstatus', where).subscribe( data => {
+      this.applicantstatus = data.docs.map(doc => doc.data());
     });
   }
 
   // calling a user
- /* async callUser(phone) {
+  async callUser(phone) {
     try {
       await this.callNumber.callNumber(phone, true);
     } catch (e) {
       console.error(e);
     }
-  }*/
+  }
 
   confirmApplication(application) {
     this.api._edit('appointments', application.id, {status: 'pending'}, async (result) => {

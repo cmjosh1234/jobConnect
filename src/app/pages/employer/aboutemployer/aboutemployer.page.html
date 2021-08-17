@@ -6,10 +6,10 @@
     <ion-title>Employer Profile</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-header class="card-head">
-     <!-- <img [src]="employer.img" height="200px" style="width: 100%" alt=""  /> -->
+      <img [src]="employer.img" height="200px" style="width: 100%" alt=""  /> 
       <div class="floatingbtn">
         <ion-icon
           style="position: relative; color:white; font-size: 35px;"
@@ -76,7 +76,7 @@
         </ion-item>
       </ion-list>
     </ion-card-content>
-  </ion-card>  
+  </ion-card>
   
   <div padding text-center>
     <ion-button class="logoutbtn"  fill="clear" (click)="logout()">

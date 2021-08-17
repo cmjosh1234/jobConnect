@@ -12,7 +12,11 @@ import { DataService } from '../../services/data.service';
 export class AboutemployerPage implements OnInit {
   employer:any;
    file:File;
-  constructor(public data:DataService,public api:ApiService,public router:Router,public loading:LoadingController) { }
+  constructor(
+    public data:DataService,
+    public api:ApiService,
+    public router:Router,
+    public loading:LoadingController) { }
 
   ngOnInit() {
     this.employer = this.data.getMyEmployer();

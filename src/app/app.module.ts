@@ -14,9 +14,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { environment } from 'src/environments/environment';
-//import { CallNumber } from '@ionic-native/call-number/ngx';
-//import { SplashScreen } from "@ionic-native/splash-screen/ngx";
-//import { StatusBar } from "@ionic-native/status-bar/ngx";
+import { CallNumber } from '@ionic-native/call-number/ngx';
+import { SplashScreen } from "@ionic-native/splash-screen/ngx";
+import { StatusBar } from "@ionic-native/status-bar/ngx";
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,9 +33,9 @@ import { environment } from 'src/environments/environment';
     AppRoutingModule],
   providers: [{ provide: RouteReuseStrategy,
             useClass: IonicRouteStrategy },
-  //          CallNumber,
-  //          SplashScreen,
-  //          StatusBar
+            CallNumber,
+            SplashScreen,
+            StatusBar
     ],
   bootstrap: [AppComponent],
 })

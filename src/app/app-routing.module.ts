@@ -56,10 +56,6 @@ const routes: Routes = [
     path: 'setprofile',
     loadChildren: () => import('./pages/setprofile/setprofile.module').then( m => m.SetprofilePageModule)
   },
-  {
-    path: 'setprofile',
-    loadChildren: () => import('./pages/setprofile/setprofile.module').then( m => m.SetprofilePageModule)
-  },
 ];
 
 @NgModule({

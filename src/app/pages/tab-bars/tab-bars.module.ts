@@ -21,7 +21,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            component: JobPage
+            component: JobsPage
           }
         ]
       },

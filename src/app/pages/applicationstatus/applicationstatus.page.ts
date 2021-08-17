@@ -10,6 +10,16 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./applicationstatus.page.scss'],
 })
 export class ApplicationstatusPage implements OnInit {
+ /* user: any;
+  page = 0;
+  maximumPages = 3;
+  application = {};
+  applicationstatus: any;
+  jobs: any;
+  employer: any;
+  files: any;
+  file_id: any;
+  pdf: any; */
   user: any;
   page = 0;
   maximumPages = 3;
@@ -17,6 +27,7 @@ export class ApplicationstatusPage implements OnInit {
   applicationstatus: any;
   jobs: any;
   employer: any;
+
   constructor(
     public data:DataService,
     public api:ApiService,
@@ -26,11 +37,12 @@ export class ApplicationstatusPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    //this.employer = JSON.parse(localStorage.getItem('activeEmployer'));
     this.user = this.data.getActiveUser();
   }
 
   //loading action sheet
-  async presentActionSheet(order) {
+  async presentActionSheet(application) {
     const actionSheet = await this.actionSheetController.create({
       header: 'Select Action',
       buttons: [
@@ -39,7 +51,7 @@ export class ApplicationstatusPage implements OnInit {
           text: 'Confirm',
           icon: 'share',
           handler: () => {
-            this.actOnApplication({status: 'confirmed'}, order);
+            this.actOnApplication({status: 'confirmed'}, application);
           }
         },
         {
@@ -47,7 +59,7 @@ export class ApplicationstatusPage implements OnInit {
           icon: 'close',
           role: 'cancel',
           handler: () => {
-            this.actOnApplication({status: 'canceled'}, order);
+            this.actOnApplication({status: 'canceled'}, application);
           }
         }
       ]
@@ -57,14 +69,21 @@ export class ApplicationstatusPage implements OnInit {
 
   ionViewWillEnter() {
     this.fetchMyApplicationstatus();
+    //this.fetchJobs();
   }
 
   fetchMyApplicationstatus(){
     const where = {key: 'user_id', value: this.user.uid };
-    this.api._get('applicationstatus', where).subscribe(data => {
+    this.api._get('applicantstatus', where).subscribe(data => {
       this.applicationstatus = data.docs.map(doc => doc.data());
     });
   }
+ /* fetchJobs() {
+    const where =  {key: 'employer_id', value: this.employer.id };
+    this.api._get('jobs', where).subscribe( data => {
+      this.files = data.docs.map(doc => doc.data());
+    });
+  } */
 
    
   async showToast(message) {
@@ -76,7 +95,7 @@ export class ApplicationstatusPage implements OnInit {
   }
 
   actOnApplication(status, application) {
-    this.api._edit('applicationstatus', application.id, status, async (result) => {
+    this.api._edit('applicantstatus', application.id, status, async (result) => {
       await this.showToast(`Confirmation done`);
       this.fetchMyApplicationstatus();
     });

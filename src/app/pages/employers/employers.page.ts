@@ -26,8 +26,8 @@ export class EmployersPage implements OnInit {
     });
    }
    //fuction for visiting a shop
-   visitJob(job){
-    localStorage.setItem('activeJob', JSON.stringify(job));
+   visitEmployer(employer){
+    localStorage.setItem('activeEmployer', JSON.stringify(employer));
     this.router.navigate(['/tabs/jobs']);
      
    }
@@ -35,6 +35,15 @@ export class EmployersPage implements OnInit {
    goToApplicationStatus(){
      this.router.navigate(['/applicationstatus'])
    }
+   goToProfile(){
+    this.router.navigate(['/profile'])
+  }
+  
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
+  }
+
 
 
 }

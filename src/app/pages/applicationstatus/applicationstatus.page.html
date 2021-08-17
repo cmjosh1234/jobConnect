@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar  color="primary" >
+  <ion-toolbar  color="danger" >
     <ion-title> My Applications </ion-title>
     <ion-buttons (click)="goToEmployers()" slot="primary">
         <ion-button  >
@@ -11,7 +11,7 @@
 <ion-content>
   <div class="empty"  *ngIf="applicationstatus?.length === 0 ">
     <ion-icon name="notifications"></ion-icon>     
-    <h5>No orders made!</h5>
+    <h5>No Applications made!</h5>
     <small>
       You haven't applied to any jobs
     </small>
@@ -20,17 +20,17 @@
   <br>
   <ion-list lines="none">
     <div padding>
-      My Job Applications <span style="color:#1f8611;"></span>
+      <span style="color:#5e08c0;"><b> Applications Made </b></span>
     </div> <br> 
 
     <ion-item *ngFor="let application of applicationstatus" >
-      <ion-thumbnail slot="start">
-        <img [src]="application.Job.imageUrl"/>
-      </ion-thumbnail>
+
+     <!-- <ion-thumbnail slot="start">
+        <img [src]="application.job.imageUrl"/>
+      </ion-thumbnail>-->
       <ion-label>
         <h2>{{application.job.name}}</h2>
-       <!-- <p>Price : {{order.product.price}}</p>
-        <p>Payment on delivery</p> -->
+        <p>Description : {{application.job.jobDescription}}</p>
       </ion-label>
       <ion-button fill="outline" slot="end" (click)="presentActionSheet(application)" *ngIf="application.status === 'new' ">Confirm application</ion-button>
       <ion-button fill="outline" color="success" disabled slot="end" *ngIf="application.status === 'confirmed'" >Processing application</ion-button>
@@ -46,4 +46,4 @@
 
   </ion-list>
       
-</ion-content>
+</ion-content>    
