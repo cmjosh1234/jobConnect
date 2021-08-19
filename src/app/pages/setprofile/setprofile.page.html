@@ -9,7 +9,7 @@
   <div padding>
     <form #form="ngForm" (ngSubmit)="onSubmit(form)" >
       <ion-list>
-        <ion-label>field</ion-label>
+        <ion-label position="floating" >field</ion-label>
         <ion-select ngModel  name="type" required>
           <ion-select-option  value="administration">ADMINISTRATION</ion-select-option>
           <ion-select-option  value="it">IT PROFESSIONAL</ion-select-option>
@@ -38,6 +38,16 @@
   
         <ion-item>
           <ion-input type="tel" ngModel name="phone" placeholder="Phone Number" required   ></ion-input> 
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Highest Level of Education attained</ion-label>
+          <ion-select ngModel  name="education" required>
+            <ion-select-option  value="uce">UCE</ion-select-option>
+            <ion-select-option  value="uace">UACE</ion-select-option>
+            <ion-select-option  value="undergraduate">UNDERGRADUATE</ion-select-option>
+            <ion-select-option  value="uace">phD</ion-select-option>            
+          </ion-select>
         </ion-item>
         
   

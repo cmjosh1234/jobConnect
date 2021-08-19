@@ -21,6 +21,7 @@ export class ProfilePage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.jobSeeker = JSON.parse(localStorage.getItem('activeJobSeeker'));
     this.jobSeeker = this.data.getMyJobSeeker();
   }
   async pickPhoto( $event ) {

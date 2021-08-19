@@ -51,7 +51,17 @@ export class ApiService {
 
   // method to edit data in our database
 
-  _edit(collection, uid, data, callback) {
+  _edit1(collection, uid, data) {
+    this.fireStore.collection(collection)
+    .doc(uid)
+    .set(data)
+    .then( data => { data })
+    .catch( error =>  {error});
+  }
+
+  // method to edit data in our database
+
+  _edit(collection, uid, data, callback){
     this.fireStore.collection(collection)
     .doc(uid)
     .update(data)
@@ -66,6 +76,14 @@ export class ApiService {
     .delete()
     .then( result => callback({result}))
     .catch(error => callback({error}));
+  }
+
+  _delete1( collection, uid) {
+    this.fireStore.collection(collection)
+    .doc(uid)
+    .delete()
+    .then( result => {result})
+    .catch(error => {error});
   }
 
   //method to return a specific employer ID

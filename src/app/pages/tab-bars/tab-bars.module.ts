@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 
 //import { TabBarsPageRoutingModule } from './tab-bars-routing.module';
 import { TabBarsPage } from './tab-bars.page';
-import { JobPage } from '../job/job.page';
 import { AboutemployerPage } from '../aboutemployer/aboutemployer.page';
 import { JobsPage } from '../jobs/jobs.page';
 

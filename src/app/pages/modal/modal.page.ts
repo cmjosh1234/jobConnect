@@ -6,6 +6,7 @@ import { Resolve, ActivatedRoute } from "@angular/router";
 import { ApiService } from "../services/api.service";
 import { DataService } from "../services/data.service";
 import { AngularFirestore } from "@angular/fire/firestore";
+import { LoadingController } from '@ionic/angular';
 
 
 
@@ -37,13 +38,11 @@ export class ModalPage implements OnInit {
     public navParams: NavParams,
     public afStorage:AngularFireStorage,
     public toast:ToastController,
-   // public db: AngularFirestore
+    public loading: LoadingController,
+    public store: AngularFirestore
 
   ) {
-    //const where =  {key: 'employer_id', value: this.employer.id };
     this.user = this.dataService.getActiveUser();
-    //this.employer = this.db.collection('jobs').doc(this.user).get('employer_id')
-    //this.employer = this.api._get('jobs', {key: 'employer_id', value: employer.id });
     this.employer = this.dataService.getActiveEmployer();
     this.theJob = this.navParams.get('job');
   }
@@ -87,7 +86,8 @@ export class ModalPage implements OnInit {
     this.processing = true;
     const job = form.value;
     job.employer_id = this.employer.id;
-    const url = await this.upload(this.documentFile);
+    //const url = await this.upload(this.documentFile);
+    const url = await this.upload(this.documentFile);    
     job.imageUrl=url;
     this.api._add('jobs', job, ( result ) => {
           this.processing = false;
@@ -102,7 +102,7 @@ export class ModalPage implements OnInit {
       });
     
   }
-      //selecting document
+  //selecting document
   selectDocument(event) {
     this.documentFile = event.target.files[0];
     if (event.target.files && event.target.files[0]) {
@@ -115,12 +115,37 @@ export class ModalPage implements OnInit {
   }
   //uploading document
   async upload(file) {
-    // console.log(file);
+    //const randomId = Math.random().toString(36).substring(2);
     const randomId = Math.random().toString(36).substring(2);
     const ref = this.afStorage.ref("documents/" + randomId);
     const task = await ref.put(file);
     const downloadURL = await task.ref.getDownloadURL();
     return downloadURL;
+  }
+
+ /* async pickFile( $event ) {
+    const loading = await this.loading.create({
+      message: 'Uploading image ...',
+    });
+    await loading.present();
+
+    this.file = $event.target.files[0];
+    this.api._uploadFile( this.file, 'jobSeekerPro', ( result ) => {
+      if ( result.flag ) {
+        this.user.file = result.url;
+        this.api._add('employers', { file: result.url}, ( data ) => {
+          loading.dismiss();
+          this.dataService.setMyJobSeeker(this.user);
+          this.getUser();
+        });
+      } else {
+
+      }
+    });
+  }*/
+
+  getUser() {
+    this.user = this.dataService.getMyEmployer();
   }
 
 

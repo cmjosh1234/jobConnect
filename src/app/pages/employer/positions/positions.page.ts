@@ -4,6 +4,7 @@ import { ToastController } from '@ionic/angular';
 import { ApiService } from '../../services/api.service';
 import { DataService } from '../../services/data.service';
 import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-positions',
@@ -25,7 +26,8 @@ export class PositionsPage implements OnInit {
     public data:DataService,
     public api:ApiService,
     public afStorage:AngularFireStorage,
-    public toast:ToastController
+    public toast:ToastController,
+    public store : AngularFirestore
   ) {
 
    }
@@ -46,6 +48,25 @@ export class PositionsPage implements OnInit {
       this.jobs = data.docs.map(doc => doc.data());
     });
   }
+
+ /* deleteJob(jobUid){
+    console.log(jobUid);
+    this.api._delete1('jobs',jobUid);{
+      this.store.collection('jobs')
+      .doc("jobUid").ref
+      .delete()
+      .then( data => this.showToast("Job deleted"))
+      .catch(error => this.showToast("error"+ error))
+    }} */
+    deleteJob(jobUid){
+      console.log(jobUid);
+      this.api._delete1('jobs',jobUid);{
+        this.store.collection('jobs')
+        .doc("jobUid").ref
+        .delete()
+        .then( data => this.showToast("Job deleted"))
+        .catch(error => this.showToast("error"+ error))
+      }}
 
   addBtnClicked() {
     this.openForm = !this.openForm;
@@ -103,8 +124,12 @@ export class PositionsPage implements OnInit {
     toast.present();
   }
 
-  goToJob(){
-    this.router.navigate(['/job'])
-  }
+    async showToast(message) {
+      const toast = await this.toast.create({
+        message,
+        duration: 2000
+      });
+      toast.present();
+    }
 
 }
