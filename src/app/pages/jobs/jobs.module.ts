@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { JobsPageRoutingModule } from './jobs-routing.module';
 
 import { JobsPage } from './jobs.page';
+import { Ng2SearchPipeModule } from "ng2-search-filter";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    JobsPageRoutingModule
+    JobsPageRoutingModule,
+    Ng2SearchPipeModule
   ],
-  declarations: [JobsPage]
+ // declarations: [JobsPage]
 })
 export class JobsPageModule {}

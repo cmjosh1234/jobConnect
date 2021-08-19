@@ -11,6 +11,9 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./jobs.page.scss'],
 })
 export class JobsPage implements OnInit {
+ // originalData: any;
+ // modifiedData: any;
+ filterTerm: string;
   jobs: any;
   job: {};
   employer: any;
@@ -19,12 +22,25 @@ export class JobsPage implements OnInit {
     public data:DataService,
     public modalController:ModalController, // for modal page (modal page is for application)
     public router:Router
-  ) { }
+  ) { 
+   // this.originalData = this.ionViewWillEnter();
+   // this.modifiedData = JSON.parse(JSON.stringify(this.originalData));
+  }
 
+  resetData(){
+ //   this.modifiedData = JSON.parse(JSON.stringify(this.originalData));
+  }
+
+ /* filterData(){
+    this.modifiedData = this.modifiedData.filter((this.job), => {
+        return: this.job.type = this.filter
+    });
+  } */
 
   ngOnInit() {
     this.employer = JSON.parse(localStorage.getItem('activeEmployer'));
     //this.fetchAllJobs()
+   // console.log(this.originalData);
   }
 
   ionViewWillEnter() {

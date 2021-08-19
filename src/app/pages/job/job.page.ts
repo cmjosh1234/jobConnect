@@ -11,8 +11,6 @@ import { Router } from '@angular/router';
 })
 export class JobPage implements OnInit {
 
-  employer: any;
-  jobs: any;
   constructor(
     public router:Router,
     public data:DataService,
@@ -20,14 +18,8 @@ export class JobPage implements OnInit {
     public afStorage:AngularFireStorage
   ) { }
 
-  ngOnInit() {
-    this.employer = this.data.getMyEmployer(); 
+  ngOnInit() { 
   }
-  fetchJob() {
-    const where =  {key: 'employer_id', value: this.employer.id };
-    this.api._get('jobs', where).subscribe( data => {
-      this.jobs = data.docs.map(doc => doc.data());
-    });
-  }
+
 
 }

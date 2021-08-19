@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 //libraries used to integrate or mobile application with backend services
 import { AngularFireModule } from '@angular/fire';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -17,12 +18,14 @@ import { environment } from 'src/environments/environment';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     AngularFireModule.initializeApp(environment.firebase,'jobConnect'),
+    AngularFireMessagingModule,
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
     AngularFireStorageModule ,// storage
@@ -30,7 +33,12 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
     FormsModule, //forms module
     CommonModule, //common module
     IonicModule.forRoot(), 
-    AppRoutingModule],
+    AppRoutingModule, ServiceWorkerModule.register('combined-sw.js', {
+  enabled: environment.production,
+  // Register the ServiceWorker as soon as the app is stable
+  // or after 30 seconds (whichever comes first).
+  registrationStrategy: 'registerWhenStable:30000'
+})],
   providers: [{ provide: RouteReuseStrategy,
             useClass: IonicRouteStrategy },
             CallNumber,

@@ -21,7 +21,7 @@ export class ProfilePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.jobSeeker = JSON.parse(localStorage.getItem('activeJobSeeker'))
+    this.jobSeeker = this.data.getMyJobSeeker();
   }
   async pickPhoto( $event ) {
     const loading = await this.loading.create({
@@ -50,6 +50,10 @@ export class ProfilePage implements OnInit {
   
   getJobSeeker() {
     this.jobSeeker = this.data.getMyJobSeeker();
+  }
+
+  backToEmployers(){
+    this.router.navigate(['/employers'])
   }
 
 

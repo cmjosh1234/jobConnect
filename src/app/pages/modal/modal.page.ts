@@ -71,8 +71,6 @@ export class ModalPage implements OnInit {
   }
 
   ngOnInit() {
-   /* const where =  {key: 'employer_id', value: this.employer.id };
-    this.employer = this.api._get('jobs', where); */
   }
 
   close( data = null) {
@@ -83,14 +81,7 @@ export class ModalPage implements OnInit {
   addBtnClicked() {
     this.openForm = !this.openForm;
   }
- /* fetchEmployer() {
-    const where =  {key: 'employer_id', value: this.employer.id };
-    this.api._get('products', where)/*.subscribe( data => {
-      this.pictures = data.docs.map(doc => doc.data());
-    });
-  } */
-
-
+ 
   async addServices( form ) {
     this.btnText = 'Please wait ... ';
     this.processing = true;

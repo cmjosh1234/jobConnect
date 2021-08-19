@@ -15,6 +15,6 @@ import { AboutemployerPage } from './aboutemployer.page';
     IonicModule,
     AboutemployerPageRoutingModule
   ],
-  declarations: [AboutemployerPage]
+ // declarations: [AboutemployerPage]
 })
 export class AboutemployerPageModule {}

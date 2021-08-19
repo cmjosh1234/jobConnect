@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "jobConnect",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

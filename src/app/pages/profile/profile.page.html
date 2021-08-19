@@ -1,7 +1,10 @@
  <ion-header>
    <ion-toolbar color="primary">
      <ion-buttons slot="start">
-        <ion-back-button defaultHref="jobseeker"></ion-back-button>
+      <ion-button (click)="backToEmployers()" >
+        <ion-icon  slot="icon-only" name="arrow-undo-circle-outline"></ion-icon>
+      </ion-button>
+        <ion-back-button defaultHref="jobSeeker"></ion-back-button>
      </ion-buttons>
       <ion-title>YOUR PROFILE</ion-title>
    </ion-toolbar>
@@ -10,13 +13,13 @@
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-header class="card-head">
-     <!--  <img [src]="jobSeeker.img" height="200px" style="width: 100%" alt=""  /> -->
-        <div class="floatingbtn">
+       <img [src]="jobSeeker.img" height="200px" style="width: 100%" alt=""  />
+    <!--<div class="floatingbtn">
           <ion-icon
             style="position: relative; color:white; font-size: 35px;"
             name="share"
           ></ion-icon>
-        </div>
+        </div>-->
         <ion-card class="floatingbn">
           <ion-card-content>
             <ion-icon style="font-size: 30px; color: white" name="cut"></ion-icon>
@@ -79,7 +82,7 @@
           <ion-item >
             <ion-label>
               <h2>Email Address</h2>
-              <p>{{employer.email}}</p>
+              <p>{{jobSeeker.email}}</p>
             </ion-label>
             <ion-icon 
               slot="end"

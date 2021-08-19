@@ -7,15 +7,28 @@
         </ion-button>
         <ion-button (click)="goToProfile()" >
           <ion-icon  slot="icon-only" name="person"></ion-icon>
-        </ion-button> <!--(click)="fetchAllJobs()-->
+        </ion-button>
     
       </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-searchbar></ion-searchbar>
+<ion-searchbar placeholder="Search..." [(ngModel)]="filterTerm" animated="true"></ion-searchbar>
 <!-- code that will render a list of jobs -->
 
 <ion-content>
+ <!-- <ion-list>
+    <ion-item>
+      <ion-label>Desired field</ion-label>
+      <ion-input type="text" ></ion-input>
+      <ion-select [(ngModel)]="filter" >
+        <ion-select-option  value="administration">ADMINISTRATION</ion-select-option>
+        <ion-select-option  value="it">IT PROFESSIONAL</ion-select-option>
+        <ion-select-option  value="hospitality">HOSPITALITY</ion-select-option>
+        <ion-select-option  value="advertisement">ADVERTISEMENT</ion-select-option>
+        <ion-select-option  value="other">OTHER</ion-select-option>
+      </ion-select>
+    </ion-item> <br/>
+  </ion-list>-->
   <br>
   <ion-list lines="none">
     <div padding>
@@ -23,17 +36,19 @@
     </div> <br> 
 
     
-    <ion-item *ngFor="let job of jobs" (click)="presentModal(job)" ><!--(click)="fetchAllJobs()" -->
-      <ion-thumbnail slot="start">
+    <ion-item *ngFor="let job of jobs" (click)="presentModal(job)"><!--*ngFor="let job of jobs | filter:filterTerm" -->
+      <!--<ion-thumbnail slot="start">
         <img [src]="job.imageUrl"/>
-      </ion-thumbnail>
-      <ion-label>
-        <h2>{{job.name}}</h2>
-        <p>Description : {{job.jobDescription}}</p>
-       <!-- <p>Requirements : {{job.requirements}}</p>
-        <p>{{job.duration}}</p>-->
-      </ion-label>
-      <ion-button slot="end"> Apply </ion-button>
+      </ion-thumbnail> -->
+      <div  class="item">
+        <ion-label>
+          <h2>{{job.name}}</h2>
+          <p>Description : {{job.jobDescription}}</p>
+          <p>Field: {{job.type}}</p>
+          <p>Qualifications : {{job.qualifications}}</p>
+        </ion-label>
+      <ion-button > Apply </ion-button>
+      </div>
     </ion-item> 
 
   </ion-list>  

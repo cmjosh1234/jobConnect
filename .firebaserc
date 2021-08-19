@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "jobconnect-fdf9c"
+  },
+  "targets": {
+    "jobconnect-fdf9c": {
+      "hosting": {
+        "app": [
+          "jobconnect-fdf9c"
+        ]
+      }
+    }
+  }
+}
